@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">FirestoreRealtimePagination</string>
+    <string name="added">added</string>
+    <string name="modified">modified</string>
+    <string name="removed">removed</string>
+</resources>
