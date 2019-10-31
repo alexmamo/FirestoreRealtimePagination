@@ -18,12 +18,12 @@ public class ProductListLiveData extends LiveData<Operation> implements EventLis
     private Query query;
     private ListenerRegistration listenerRegistration;
     private OnLastVisibleProductCallback onLastVisibleProductCallback;
-    private OnLastProductReached onLastProductReached;
+    private OnLastProductReachedCallback onLastProductReachedCallback;
 
-    ProductListLiveData(Query query, OnLastVisibleProductCallback onLastVisibleProductCallback, OnLastProductReached onLastProductReached) {
+    ProductListLiveData(Query query, OnLastVisibleProductCallback onLastVisibleProductCallback, OnLastProductReachedCallback onLastProductReachedCallback) {
         this.query = query;
         this.onLastVisibleProductCallback = onLastVisibleProductCallback;
-        this.onLastProductReached = onLastProductReached;
+        this.onLastProductReachedCallback = onLastProductReachedCallback;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class ProductListLiveData extends LiveData<Operation> implements EventLis
 
         int querySnapshotSize = querySnapshot.size();
         if (querySnapshotSize < LIMIT) {
-            onLastProductReached.setLastProductReached(true);
+            onLastProductReachedCallback.setLastProductReached(true);
         } else {
             DocumentSnapshot lastVisibleProduct = querySnapshot.getDocuments().get(querySnapshotSize - 1);
             onLastVisibleProductCallback.setLastVisibleProduct(lastVisibleProduct);
@@ -74,7 +74,7 @@ public class ProductListLiveData extends LiveData<Operation> implements EventLis
         void setLastVisibleProduct(DocumentSnapshot lastVisibleProduct);
     }
 
-    interface OnLastProductReached {
+    interface OnLastProductReachedCallback {
         void setLastProductReached(boolean isLastProductReached);
     }
 }

@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel;
 
 @SuppressWarnings("WeakerAccess")
 public class ProductListViewModel extends ViewModel {
-    private ProductListRepository productListRepository = new FirestoreProductListRepository();
+    private ProductListRepository productListRepository = new FirestoreProductListRepositoryCallback();
 
     ProductListLiveData getProductListLiveData() {
         return productListRepository.getProductListLiveData();

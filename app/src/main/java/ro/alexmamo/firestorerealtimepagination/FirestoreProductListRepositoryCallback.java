@@ -10,8 +10,8 @@ import static ro.alexmamo.firestorerealtimepagination.Constants.LIMIT;
 import static ro.alexmamo.firestorerealtimepagination.Constants.PRODUCTS_COLLECTION;
 import static ro.alexmamo.firestorerealtimepagination.Constants.PRODUCT_NAME_PROPERTY;
 
-public class FirestoreProductListRepository implements ProductListViewModel.ProductListRepository,
-        ProductListLiveData.OnLastVisibleProductCallback, ProductListLiveData.OnLastProductReached {
+public class FirestoreProductListRepositoryCallback implements ProductListViewModel.ProductListRepository,
+        ProductListLiveData.OnLastVisibleProductCallback, ProductListLiveData.OnLastProductReachedCallback {
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private CollectionReference productsRef = firebaseFirestore.collection(PRODUCTS_COLLECTION);
     private Query query = productsRef.orderBy(PRODUCT_NAME_PROPERTY, ASCENDING).limit(LIMIT);
